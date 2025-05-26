@@ -1,16 +1,7 @@
-'use client'
-import { useState } from 'react';
+"use client";
+import { useState } from "react";
 
 export default function TaskManager() {
-  const [tasks, setTasks] = useState([]);
-  const [input, setInput] = useState("");
-
-  const addTask = () => {
-    if (input.trim() !== "") {
-      setTasks([...tasks, input]);
-      setInput("");
-    }
-  };
 
   return (
     <section className="container mx-auto p-4">
@@ -20,29 +11,15 @@ export default function TaskManager() {
         <div className="flex mb-4">
           <input
             type="text"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
             placeholder="Add a new task"
             className="flex-1 p-2 border border-gray-300 rounded-l"
           />
           <button
-            onClick={addTask}
             className="bg-blue-600 text-white px-4 rounded-r"
           >
             Add Task
           </button>
         </div>
-
-        <ul className="space-y-2">
-          {tasks.map((task, index) => (
-            <li
-              key={index}
-              className="bg-gray-100 p-2 rounded text-gray-800"
-            >
-              {task}
-            </li>
-          ))}
-        </ul>
       </div>
     </section>
   );
