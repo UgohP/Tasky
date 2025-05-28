@@ -1,21 +1,21 @@
 import { ConnectDB } from "@/lib/config/db";
-import Tasks from "@/lib/models/Task";
+import TaskModel from "@/lib/models/Task";
 import { NextResponse } from "next/server";
 
 await ConnectDB();
 
+//API Endpoint to get all Tasks
 export async function GET(request) {
   try {
-    return NextResponse.json({ msg: "API is working" });
+    const tasks = await TaskModel.find().sort({ createdAt: -1 });
+    return NextResponse.json({ tasks });
   } catch (error) {
     console.error("GET error:", error);
-    return NextResponse.json(
-      { error: "Database connection failed" },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }
 
+//API Endpoint for Adding Tasks
 export async function POST(request) {
   try {
     const body = await request.json();
@@ -28,7 +28,7 @@ export async function POST(request) {
       );
     }
 
-    const newTask = await Tasks.create({ title: title.trim() });
+    const newTask = await TaskModel.create({ title: title.trim() });
 
     return NextResponse.json(
       { success: true, msg: "Task Added", data: newTask },
