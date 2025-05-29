@@ -1,7 +1,7 @@
 <div align="center">
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/UgohP/task-manager)
-[![Twitter Follow](https://img.shields.io/twitter/follow/paschalugoh?style=social)](https://twitter.com/intent/follow?screen_name=pasky_u)
+[![Twitter Follow](https://img.shields.io/twitter/follow/pasky_u?style=social)](https://twitter.com/intent/follow?screen_name=pasky_u)
 
 <br />
 <br />
