@@ -1,36 +1,70 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<div align="center">
 
-## Getting Started
+![GitHub repo size](https://img.shields.io/github/repo-size/UgohP/task-manager)
+[![Twitter Follow](https://img.shields.io/twitter/follow/paschalugoh?style=social)](https://twitter.com/intent/follow?screen_name=paschalugoh)
 
-First, run the development server:
+<br />
+<br />
+
+<h2 align="center">📋 Task Manager App</h2>
+
+A modern, responsive, audio-enhanced task manager built with Next.js, MongoDB, and Tailwind CSS.  
+Easily manage your daily tasks, track history, and stay productive with sound feedback.
+
+</div>
+
+---
+
+### Demo Screenshot
+
+![Task Manager Desktop](./public/preview.png)
+
+---
+
+### Features
+
+- Add, complete, and delete tasks
+- Audio sounds on task actions (clap, oops, delete)
+- Tasks grouped and sorted by date
+- UI feedback for "Completed" vs "Undone" (based on due date)
+- RESTful API with Mongoose & MongoDB
+- Built with Next.js App Router
+
+---
+
+### Tech Stack
+
+- **Frontend:** Next.js, Tailwind CSS, React
+- **Backend:** Node.js, MongoDB, Mongoose
+- **Audio:** HTML5 Audio API
+- **Notifications:** React Toastify
+
+---
+
+### Prerequisites
+
+Before you begin, ensure you have met the following requirements:
+
+* [Git](https://git-scm.com/downloads "Download Git") must be installed on your operating system.
+
+### Run Locally
+
+To run **Tasky** locally, run this command on your git bash:
+
+Linux and macOS:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+sudo git clone https://github.com/UgohP/tasky.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Windows:
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+```bash
+git clone https://github.com/UgohP/tasky.git
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Contact
 
-## Learn More
+If you want to contact with me you can reach me at [Twitter](https://x.com/pasky_u) [LinkedIn](https://linkedin.com/in/ugohpaschal).
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
