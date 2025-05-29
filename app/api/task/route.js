@@ -7,7 +7,16 @@ await ConnectDB();
 //API Endpoint to get all Tasks
 export async function GET(request) {
   try {
-    const tasks = await TaskModel.find().sort({ createdAt: -1 });
+    const startOfDay = new Date();
+    startOfDay.setHours(0, 0, 0, 0);
+
+    const endOfDay = new Date();
+    endOfDay.setHours(23, 59, 59, 999);
+
+    const tasks = await TaskModel.find({
+      createdAt: { $gte: startOfDay, $lte: endOfDay },
+    }).sort({ createdAt: -1 });
+
     return NextResponse.json({ tasks });
   } catch (error) {
     console.error("GET error:", error);
