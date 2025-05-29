@@ -4,6 +4,10 @@ import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 export default function Home() {
+  // === ADD THESE TWO LINES TO CREATE AUDIO OBJECTS ===
+  const clapSound = typeof window !== "undefined" ? new Audio("/sounds/clap.mp3") : null;
+  const oopsSound = typeof window !== "undefined" ? new Audio("/sounds/oops.mp3") : null;
+
   const [isFocused, setIsFocused] = useState(false);
   const [tasks, setTasks] = useState([]);
   const [data, setData] = useState({
@@ -49,6 +53,7 @@ export default function Home() {
   useEffect(() => {
     fetchTasks();
   }, []);
+
   const deleteTask = async (id) => {
     const response = await axios.delete(`/api/task/${id}`);
     toast.error(response.data.msg);
@@ -56,6 +61,12 @@ export default function Home() {
   };
 
   const toggleComplete = async (id, currentStatus) => {
+    if (!currentStatus) {
+      clapSound && clapSound.play();
+    } else {
+      oopsSound && oopsSound.play();
+    }
+
     try {
       const response = await axios.patch(`/api/task/${id}`, {
         completed: !currentStatus,
@@ -69,7 +80,7 @@ export default function Home() {
           `${
             !currentStatus
               ? "Congrats on Completing the task! 🎉👏"
-              : "Opps!! Thought task was done 😅"
+              : "Oops!! Thought task was done 😅"
           }`
         );
       } else {
