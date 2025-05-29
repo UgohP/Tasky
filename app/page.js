@@ -4,9 +4,12 @@ import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 export default function Home() {
-  // === ADD THESE TWO LINES TO CREATE AUDIO OBJECTS ===
-  const clapSound = typeof window !== "undefined" ? new Audio("/sounds/clap.mp3") : null;
-  const oopsSound = typeof window !== "undefined" ? new Audio("/sounds/oops.mp3") : null;
+  const clapSound =
+    typeof window !== "undefined" ? new Audio("/sounds/clap.mp3") : null;
+  const oopsSound =
+    typeof window !== "undefined" ? new Audio("/sounds/oops.mp3") : null;
+  const taskSound =
+    typeof window !== "undefined" ? new Audio("/sounds/delete.mp3") : null;
 
   const [isFocused, setIsFocused] = useState(false);
   const [tasks, setTasks] = useState([]);
@@ -35,6 +38,7 @@ export default function Home() {
       const response = await axios.post("/api/task/", data);
       if (response.data.success) {
         toast.success(response.data.msg);
+        taskSound.play();
         setTasks((d) => [response.data.data, ...d]);
         setData({ title: "", completed: false });
       } else {
@@ -154,7 +158,7 @@ export default function Home() {
                   {task.completed ? "Undo" : "Done"}
                 </button>
                 <button
-                  onClick={() => deleteTask(task._id)}
+                  onClick={() => deleteTask(task._id, taskSound.play())}
                   className="text-white text-xs px-3 py-1 rounded bg-red-500 hover:bg-red-600"
                 >
                   Delete
