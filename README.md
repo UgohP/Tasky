@@ -17,7 +17,7 @@ Easily manage your daily tasks, track history, and stay productive with sound fe
 
 ### Demo Screenshot
 
-![Task Manager Desktop](./public/preview.png)
+![Task Manager Desktop](./public/tasky.png)
 
 ---
 
@@ -34,9 +34,10 @@ Easily manage your daily tasks, track history, and stay productive with sound fe
 
 ### Tech Stack
 
-- **Frontend:** Next.js, Tailwind CSS, React
-- **Backend:** Node.js, MongoDB, Mongoose
-- **Audio:** HTML5 Audio API
+![Next.js](./public/next.svg)
+
+- **Frontend:** Tailwind CSS, React
+- **Database:** MongoDB
 - **Notifications:** React Toastify
 
 ---
@@ -45,7 +46,7 @@ Easily manage your daily tasks, track history, and stay productive with sound fe
 
 Before you begin, ensure you have met the following requirements:
 
-* [Git](https://git-scm.com/downloads "Download Git") must be installed on your operating system.
+- [Git](https://git-scm.com/downloads "Download Git") must be installed on your operating system.
 
 ### Run Locally
 
@@ -65,11 +66,9 @@ git clone https://github.com/UgohP/tasky.git
 
 ### Contact
 
-If you want to contact with me you can reach me at 
+If you want to contact with me you can reach me at
 <br/>
 
 - [X(formally Twitter)](https://x.com/pasky_u)
 
 - [LinkedIn](https://linkedin.com/in/ugohpaschal).
-
-
