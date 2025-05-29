@@ -6,9 +6,9 @@
 <br />
 <br />
 
-<h2 align="center">📋 Task Manager App</h2>
+<h2 align="center">Tasky</h2>
 
-A modern, responsive, audio-enhanced task manager built with Next.js, MongoDB, and Tailwind CSS.  
+A modern, responsive, audio-enhanced task manager app built with Next.js, MongoDB, and Tailwind CSS.  
 Easily manage your daily tasks, track history, and stay productive with sound feedback.
 
 </div>
