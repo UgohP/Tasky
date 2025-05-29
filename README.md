@@ -66,8 +66,9 @@ git clone https://github.com/UgohP/tasky.git
 ### Contact
 
 If you want to contact with me you can reach me at 
-[X(formally Twitter)](https://x.com/pasky_u)
 <br/>
-[LinkedIn](https://linkedin.com/in/ugohpaschal).
+- [X(formally Twitter)](https://x.com/pasky_u)
+<br/>
+- [LinkedIn](https://linkedin.com/in/ugohpaschal).
 
 
