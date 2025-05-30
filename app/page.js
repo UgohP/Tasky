@@ -12,11 +12,23 @@ export default function Home() {
     typeof window !== "undefined" ? new Audio("/sounds/delete.mp3") : null;
 
   const [isFocused, setIsFocused] = useState(false);
+  const [soundEnabled, setSoundEnabled] = useState(true);
   const [tasks, setTasks] = useState([]);
   const [data, setData] = useState({
     title: "",
     completed: false,
   });
+
+  useEffect(() => {
+    const savedSetting = localStorage.getItem("sound-enabled");
+    if (savedSetting !== null) {
+      setSoundEnabled(savedSetting === "true");
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("sound-enabled", soundEnabled);
+  }, [soundEnabled]);
 
   const today = new Date();
   const formattedDate = today.toLocaleDateString("en-US", {
@@ -38,7 +50,7 @@ export default function Home() {
       const response = await axios.post("/api/task/", data);
       if (response.data.success) {
         toast.success(response.data.msg);
-        taskSound.play();
+        if (soundEnabled && taskSound) taskSound.play();
         setTasks((d) => [response.data.data, ...d]);
         setData({ title: "", completed: false });
       } else {
@@ -59,17 +71,15 @@ export default function Home() {
   }, []);
 
   const deleteTask = async (id) => {
+    if (soundEnabled && taskSound) taskSound.play();
     const response = await axios.delete(`/api/task/${id}`);
     toast.error(response.data.msg);
     fetchTasks();
   };
 
   const toggleComplete = async (id, currentStatus) => {
-    if (!currentStatus) {
-      clapSound && clapSound.play();
-    } else {
-      oopsSound && oopsSound.play();
-    }
+    if (!currentStatus && soundEnabled && clapSound) clapSound.play();
+    if (currentStatus && soundEnabled && oopsSound) oopsSound.play();
 
     try {
       const response = await axios.patch(`/api/task/${id}`, {
@@ -98,8 +108,17 @@ export default function Home() {
   return (
     <section className="container mx-auto p-4">
       <div className="bg-white shadow-md rounded-lg p-6 max-w-md mx-auto">
-        <h2 className="text-2xl font-semibold mb-1">My Day</h2>
+        <div className="flex justify-between items-center mb-2">
+          <h2 className="text-2xl font-semibold">My Day</h2>
+          <button
+            onClick={() => setSoundEnabled((prev) => !prev)}
+            className="text-xs border px-3 py-1 rounded bg-gray-100 hover:bg-gray-200"
+          >
+            {soundEnabled ? "🔊 Sound On" : "🔇 Muted"}
+          </button>
+        </div>
         <p className="text-sm text-gray-500 mb-4">{formattedDate}</p>
+
         <form onSubmit={onSubmitHandler} className="flex mb-4">
           <input
             type="text"
@@ -121,6 +140,7 @@ export default function Home() {
             Add Task
           </button>
         </form>
+
         <div className="overflow-y-auto max-h-[calc(100vh-200px)] pr-1 -mr-1 scrollbar-thin scrollbar-thumb-transparent hover:scrollbar-thumb-black/50 focus-within:scrollbar-thumb-black/50 flex-grow">
           <ul className="space-y-2">
             {tasks.length === 0 && (
@@ -149,7 +169,7 @@ export default function Home() {
                 </span>
                 <button
                   onClick={() => toggleComplete(task._id, task.completed)}
-                  className={`text-white text-xs px-3 py-1 rounded ${
+                  className={`text-white text-xs px-3 py-1 rounded cursor-pointer ${
                     task.completed
                       ? "bg-yellow-500 hover:bg-yellow-600"
                       : "bg-green-500 hover:bg-green-600"
@@ -158,8 +178,8 @@ export default function Home() {
                   {task.completed ? "Undo" : "Done"}
                 </button>
                 <button
-                  onClick={() => deleteTask(task._id, taskSound.play())}
-                  className="text-white text-xs px-3 py-1 rounded bg-red-500 hover:bg-red-600"
+                  onClick={() => deleteTask(task._id)}
+                  className="text-white text-xs px-3 py-1 rounded cursor-pointer bg-red-500 hover:bg-red-600"
                 >
                   Delete
                 </button>
